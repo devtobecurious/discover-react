@@ -1,9 +1,12 @@
 import React from 'react';
+import './Person.css';
 
 const person = () => {
 
     return (
-        <p>I'm a person !</p>
+        <div className="Person">
+            <p>I'm a person and I'm {Math.floor(Math.random() * 30)} years!</p>
+        </div>
     );
 };
 
