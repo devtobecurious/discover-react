@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import People from '../People/People-1';
 
 class PersonIteration extends Component {
     state = {
@@ -17,7 +18,8 @@ class PersonIteration extends Component {
                 </div>
                 {
                     this.state.people.map(item => {
-                        return <div>{ item.name }</div>
+                        // return <div>{ item.name }</div>
+                        return <People name={item.name}></People>
                     })
                 }
             </div>
