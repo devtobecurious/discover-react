@@ -8,6 +8,7 @@ import PersonOutput1 from '../Person/Person-5-output';
 import PersonUseState from '../Person/Person-UseState';
 import PersonBanana from '../Person/Person-6-two-way';
 import PersonWithInlineStyle from '../Person/Person-WithInlineStyle';
+import PersonalConditional from '../Person/Person-Conditional';
 
 // import '../Person/Person.css';
 
@@ -86,6 +87,7 @@ class App extends Component {
           <PersonWithInlineStyle></PersonWithInlineStyle>
         </div> : null
         }
+        <PersonalConditional></PersonalConditional>
       </div>
     );
   }
