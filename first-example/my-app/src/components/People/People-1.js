@@ -1,24 +1,22 @@
-import Radium, { StyleRoot } from 'radium';
 import React from 'react';
-import './People.css';
+// import './People.css';
+import styled from 'styled-components';
 
 const style = {
     backgroundColor: 'grey',
-    margin: '20px',
-    ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-    },
-    '@media max-width: 750px)': {
-        backgroundColor: 'yelllow'
-    }
+    margin: '20px'
 };
 
 const People1 = (props) => {
     let classes = ['People', 'red', 'bold'].join(' ');
+    const StyledDiv = styled.div`
+        border: 2px solid royalblue;
+        padding: 10px;
+    `;
 
     return (
-        <div style={ style } className={classes}>
+        //<div style={ style } className={classes}>
+        <StyledDiv>
             <b>People !</b>
             <span>{props.name}</span>
             <p>
@@ -27,8 +25,8 @@ const People1 = (props) => {
             <p>
                 <button onClick={props.delete}>Delete</button>
             </p>
-        </div>
+        </StyledDiv>
     );
 }
 
-export default Radium(People1);
+export default People1;

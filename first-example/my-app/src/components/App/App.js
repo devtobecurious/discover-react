@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Radium, { StyleRoot } from 'radium';
 
 import Person from '../Person/Person';
 import Person2 from '../Person/Person-2';
@@ -64,7 +63,7 @@ class App extends Component {
 
   render() {
     return (
-      <StyleRoot>
+      
         <div className="App">
         <h1>{Math.floor(Math.random() * 100)}</h1>
         <p>
@@ -95,7 +94,7 @@ class App extends Component {
         <PersonalConditional></PersonalConditional>
         <PersonIteration></PersonIteration>
       </div>
-      </StyleRoot>
+      
     );
   }
 
