@@ -17,7 +17,7 @@ import './App.css';
 // import '../Person/Person.css';
 
 const StyledButton = styled.button`
-  color: white;
+  color: ${props => props.defaultColor};
   font: inherit;
   border: 2px solid blue;
   padding: 8px;
@@ -82,7 +82,7 @@ class App extends Component {
         <p>
           Working !
         </p>
-        <StyledButton onClick={this.switchName}>Switch name</StyledButton>
+        <StyledButton defaultColor='red' onClick={this.switchName}>Switch name</StyledButton>
         <StyledButton onClick={this.switchNameAvecThis.bind(this, 'aloha')}>Switch name avec this</StyledButton>
 
         <button onClick={this.showHidePersons}>Switch show</button>
