@@ -10,6 +10,17 @@ class PersonIteration extends Component {
         ]
     };
 
+    deleteOnPeople = (index) => {
+        console.log(index);
+
+        const people = this.state.people;
+        people.splice(index, 1);
+
+        this.setState({
+            people: people
+        });
+    }
+
     render() {
         return (
             <div>
@@ -17,9 +28,9 @@ class PersonIteration extends Component {
                     <b>PersonConditional</b>
                 </div>
                 {
-                    this.state.people.map(item => {
+                    this.state.people.map((item, index) => {
                         // return <div>{ item.name }</div>
-                        return <People name={item.name}></People>
+                        return <People name={item.name} delete={ this.deleteOnPeople.bind(this, index)}></People>
                     })
                 }
             </div>
