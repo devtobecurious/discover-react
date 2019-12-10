@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
-import './App.css';
+import Radium, { StyleRoot } from 'radium';
+
 import Person from '../Person/Person';
 import Person2 from '../Person/Person-2';
 import Person3 from '../Person/Person-3';
 import Person4 from '../Person/Person-4';
 import PersonOutput1 from '../Person/Person-5-output';
-import PersonUseState from '../Person/Person-UseState';
 import PersonBanana from '../Person/Person-6-two-way';
-import PersonWithInlineStyle from '../Person/Person-WithInlineStyle';
 import PersonalConditional from '../Person/Person-Conditional';
 import PersonIteration from '../Person/Person-Iteration';
+import PersonUseState from '../Person/Person-UseState';
+import PersonWithInlineStyle from '../Person/Person-WithInlineStyle';
+import './App.css';
+
 
 // import '../Person/Person.css';
 
@@ -61,7 +64,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <StyleRoot>
+        <div className="App">
         <h1>{Math.floor(Math.random() * 100)}</h1>
         <p>
           Working !
@@ -91,6 +95,7 @@ class App extends Component {
         <PersonalConditional></PersonalConditional>
         <PersonIteration></PersonIteration>
       </div>
+      </StyleRoot>
     );
   }
 

@@ -1,12 +1,21 @@
+import Radium, { StyleRoot } from 'radium';
 import React from 'react';
+import './People.css';
 
 const style = {
     backgroundColor: 'grey',
-    margin: '20px'
+    margin: '20px',
+    ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+    },
+    '@media max-width: 750px)': {
+        backgroundColor: 'yelllow'
+    }
 };
 
 const People1 = (props) => {
-    let classes = ['red', 'bold'].join(' ');
+    let classes = ['People', 'red', 'bold'].join(' ');
 
     return (
         <div style={ style } className={classes}>
@@ -22,4 +31,4 @@ const People1 = (props) => {
     );
 }
 
-export default People1;
+export default Radium(People1);
