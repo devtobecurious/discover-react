@@ -12,15 +12,23 @@ class PersonConditional extends Component {
     }
 
     render() {
+        const style = {
+            backgroundColor: 'grey',
+            color: 'white'
+        };
+
         let content = null;
+        
         if (this.state.showContent) {
+            style.backgroundColor = 'green';
+
             content = (
                 <i>coucou !</i>
             );
         }
 
         return (
-            <div>
+            <div style={style}>
                 <b>PersonConditional</b>
                 <button onClick={this.showHide}>Hey eh ouh ouh</button>
                 {
