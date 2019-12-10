@@ -6,8 +6,10 @@ const style = {
 };
 
 const People1 = (props) => {
+    let classes = ['red', 'bold'].join(' ');
+
     return (
-        <div style={ style }>
+        <div style={ style } className={classes}>
             <b>People !</b>
             <span>{props.name}</span>
             <p>
