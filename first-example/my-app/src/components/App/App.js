@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 import Person from '../Person/Person';
 import Person2 from '../Person/Person-2';
@@ -14,6 +15,18 @@ import './App.css';
 
 
 // import '../Person/Person.css';
+
+const StyledButton = styled.button`
+  color: white;
+  font: inherit;
+  border: 2px solid blue;
+  padding: 8px;
+
+  &:hover {
+    color: black;
+    background-color: yellow;
+  }
+`;
 
 class App extends Component {
   state = {
@@ -69,8 +82,8 @@ class App extends Component {
         <p>
           Working !
         </p>
-        <button onClick={this.switchName}>Switch name</button>
-        <button onClick={this.switchNameAvecThis.bind(this, 'aloha')}>Switch name avec this</button>
+        <StyledButton onClick={this.switchName}>Switch name</StyledButton>
+        <StyledButton onClick={this.switchNameAvecThis.bind(this, 'aloha')}>Switch name avec this</StyledButton>
 
         <button onClick={this.showHidePersons}>Switch show</button>
         {
