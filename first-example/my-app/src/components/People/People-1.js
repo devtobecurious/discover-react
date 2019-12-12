@@ -1,6 +1,8 @@
 import React from 'react';
 // import './People.css';
 import styled from 'styled-components';
+import mystyles from './people.module.css';
+import mystyles2 from './TestAsModule.module.css';
 
 const style = {
     backgroundColor: 'grey',
@@ -17,9 +19,10 @@ const People1 = (props) => {
     return (
         //<div style={ style } className={classes}>
         <StyledDiv>
-            <b>People !</b>
-            <span>{props.name}</span>
+            <b className={mystyles.testClass}>People ?!</b>
+            <span className={mystyles2.testAsModuleClass}>{props.name}</span>
             <p>
+             ?{mystyles2.testAsModuleClass} ?
                 <input type="text" value={props.name} onChange={props.update}></input>
             </p>
             <p>
