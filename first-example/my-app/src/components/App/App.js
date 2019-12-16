@@ -12,6 +12,7 @@ import PersonIteration from '../Person/Person-Iteration';
 import PersonUseState from '../Person/Person-UseState';
 import PersonWithInlineStyle from '../Person/Person-WithInlineStyle';
 import './App.css';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 
 // import '../Person/Person.css';
@@ -75,39 +76,45 @@ class App extends Component {
   }
 
   render() {
-    return (
-      
-        <div className="App">
-        <h1>{Math.floor(Math.random() * 100)}</h1>
-        <p>
-          Working !
-        </p>
-        <StyledButton defaultColor='red' onClick={this.switchName}>Switch name</StyledButton>
-        <StyledButton onClick={this.switchNameAvecThis.bind(this, 'aloha')}>Switch name avec this</StyledButton>
+    const isThrownError = Math.random(0, 1) > 0.7;
 
-        <button onClick={this.showHidePersons}>Switch show</button>
-        {
-          this.state.showPersons ? 
-          <div>
-          <Person />
-          <Person></Person>
-          <Person2 age={this.state.persons[0].age} name={this.state.persons[0].name}></Person2>
-          <Person3 age="28" name="chewie"></Person3>
-          <Person4 age="29" name="chewie">
-            test children ! <Person4>tests sous children</Person4>
-          </Person4>
-          <Person4 age="500" name="chewie">
-          </Person4>
-          <PersonUseState></PersonUseState>
-          <PersonOutput1 click={() => this.switchNameAvecThis('alors ?')}></PersonOutput1>
-          <PersonBanana name="kikoo" changed={this.nameChangedHandler}></PersonBanana>
-          <PersonWithInlineStyle></PersonWithInlineStyle>
-        </div> : null
-        }
-        <PersonalConditional></PersonalConditional>
-        <PersonIteration></PersonIteration>
-      </div>
-      
+    if (isThrownError) {
+      throw new Error('Big up !');
+    }
+
+    return (
+        <ErrorBoundary>
+          <div className="App">
+          <h1>{Math.floor(Math.random() * 100)}</h1>
+          <p>
+            Working !
+          </p>
+          <StyledButton defaultColor='red' onClick={this.switchName}>Switch name</StyledButton>
+          <StyledButton onClick={this.switchNameAvecThis.bind(this, 'aloha')}>Switch name avec this</StyledButton>
+
+          <button onClick={this.showHidePersons}>Switch show</button>
+          {
+            this.state.showPersons ? 
+            <div>
+            <Person />
+            <Person></Person>
+            <Person2 age={this.state.persons[0].age} name={this.state.persons[0].name}></Person2>
+            <Person3 age="28" name="chewie"></Person3>
+            <Person4 age="29" name="chewie">
+              test children ! <Person4>tests sous children</Person4>
+            </Person4>
+            <Person4 age="500" name="chewie">
+            </Person4>
+            <PersonUseState></PersonUseState>
+            <PersonOutput1 click={() => this.switchNameAvecThis('alors ?')}></PersonOutput1>
+            <PersonBanana name="kikoo" changed={this.nameChangedHandler}></PersonBanana>
+            <PersonWithInlineStyle></PersonWithInlineStyle>
+          </div> : null
+          }
+          <PersonalConditional></PersonalConditional>
+          <PersonIteration></PersonIteration>
+        </div>
+      </ErrorBoundary>
     );
   }
 
