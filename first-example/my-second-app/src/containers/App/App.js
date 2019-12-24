@@ -16,6 +16,7 @@ class App extends Component {
     
     return (
       <div>
+        <h1>{this.props.title}</h1>
         <CockPit></CockPit>
         <PeopleList persons={this.state.people}></PeopleList>
 
