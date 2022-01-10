@@ -1,2 +1,2 @@
 # discover-react
-Discover react, woul be interesting ! :)
+Discover react, would be interesting ! :)
