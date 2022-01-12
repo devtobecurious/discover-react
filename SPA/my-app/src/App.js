@@ -1,8 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
-import ExpenseItem from './components/ExpenseItem/ExpenseItem';
+import ExpenseItem from './components/Expense/ExpenseItem/ExpenseItem';
+import Card from './components/shared/Card/Card';
 
-function App() {
+const App = () => {
   const expenses = [
     {
       title: 'Car',
@@ -17,12 +18,12 @@ function App() {
   ];
 
   return (
-    <div>
+    <Card class="expenses">
       <header>
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <ExpenseItem data={expenses[0]} />
-    </div>
+    </Card>
   );
 }
 
