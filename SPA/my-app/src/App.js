@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import ExpenseItem from './components/Expense/ExpenseItem/ExpenseItem';
 import Card from './components/shared/Card/Card';
+import NewExpense from './components/Expense/NewExpense/NewExpense';
 
 const App = () => {
   const expenses = [
@@ -12,17 +13,28 @@ const App = () => {
     },
     {
       title: 'Food',
-      price: 20,
+      amount: 20,
       date: new Date()
     },
   ];
+
+  const elements = expenses.map(item => <ExpenseItem data={item} />);
+
+  const pushOne = item => {
+    console.info('pushOne', item);
+
+  };
 
   return (
     <Card class="expenses">
       <header>
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <ExpenseItem data={expenses[0]} />
+
+      <NewExpense onAddOne={ pushOne }></NewExpense>
+
+      { elements }
+
     </Card>
   );
 }
