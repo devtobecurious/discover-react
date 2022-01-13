@@ -1,29 +1,30 @@
+import { useState } from 'react';
+
 import logo from './logo.svg';
 import './App.css';
-import ExpenseItem from './components/Expense/ExpenseItem/ExpenseItem';
 import Card from './components/shared/Card/Card';
 import NewExpense from './components/Expense/NewExpense/NewExpense';
+import ExpenseList from './components/Expense/ExpenseList/ExpenseList';
+import getDummies from './components/Expense/Services/ExpenseService';
+
+
 
 const App = () => {
-  const expenses = [
-    {
-      title: 'Car',
-      amount: 120.41,
-      date: new Date()
-    },
-    {
-      title: 'Food',
-      amount: 20,
-      date: new Date()
-    },
-  ];
-
-  const elements = expenses.map(item => <ExpenseItem data={item} />);
+  const [expenses, setExpenseList] = useState(getDummies());
 
   const pushOne = item => {
     console.info('pushOne', item);
 
+    setExpenseList(prevState => ([ { ...item, date: new Date(item.date)}, ...prevState ]));
   };
+
+  const removeOne = id => {
+    if (window.confirm('Sur ?')) {
+      setExpenseList(prevState => prevState.filter(item => item.id !== id));
+    }
+  }
+
+  const listElements = <ExpenseList items={expenses} onRemoveOne={ removeOne }></ExpenseList>;
 
   return (
     <Card class="expenses">
@@ -32,9 +33,7 @@ const App = () => {
       </header>
 
       <NewExpense onAddOne={ pushOne }></NewExpense>
-
-      { elements }
-
+      { expenses.length > 0 ? listElements : <i>No elements</i> }
     </Card>
   );
 }

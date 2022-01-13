@@ -4,7 +4,7 @@ import Card from '../../shared/Card/Card';
 import React, { useState } from 'react';
 
 function ExpenseItem(props) {
-    let { title, amount, date } = props.data;
+    let { id, title, amount, date } = props.data;
     const [title2, setTitle] = useState(title);
 
     console.log('reload ?');
@@ -14,6 +14,10 @@ function ExpenseItem(props) {
         setTitle('Alors ?');
     };
 
+    const clickToRemoveHandler = () => {
+        props.onRemoveItem(id);
+    }
+
     return (
         <Card className='expense-item'>
             <div >
@@ -22,6 +26,7 @@ function ExpenseItem(props) {
             <h2 className='expense-item__description'>{title2}</h2>
             <div>{amount} €</div>
             <button onClick={ clickHandler }>Change title</button>
+            <button onClick={ clickToRemoveHandler }>[ - ]</button>
         </Card>
     );
 }
