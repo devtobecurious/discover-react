@@ -1,5 +1,5 @@
 export const Apis = {
     movies: {
-        url: 'https://swapi.dev/api/films'
+        url: 'https://swapi.dev/api/film'
     }
 }

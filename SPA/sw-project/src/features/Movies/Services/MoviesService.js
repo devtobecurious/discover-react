@@ -3,6 +3,11 @@ import { Apis } from "../../../config/Apis";
 export class MoviesService {
     async getAll() {
         const response = await fetch(Apis.movies.url);
+
+        if (! response.ok) {
+            throw new Error('Fail');
+        }
+
         const result = await response.json();
         const films = result.results;
 
