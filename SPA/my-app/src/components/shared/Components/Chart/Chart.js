@@ -2,7 +2,10 @@ import ChartBar from "./ChartBar/ChartBar";
 import './Chart.css';
 
 const Chart = props => {
-    const chartBars = props.dataPoints.map(item => <ChartBar key={item.id} value={item.value} maxValue={null} label={item.label} />);
+    const values = props.dataPoints.map(item => item.value);
+    const max = Math.max(...values);
+
+    const chartBars = props.dataPoints.map(item => <ChartBar key={item.label} value={item.value} maxValue={max} label={item.label} />);
 
     return (
         <div className="chart">
