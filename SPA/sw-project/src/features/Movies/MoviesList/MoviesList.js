@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Apis } from "../../../config/Apis";
 import MoviesTable from "../MoviesTable/MoviesTable";
 import MoviesService from "../Services/MoviesService";
@@ -31,6 +32,7 @@ const MoviesList = props => {
 
     return (
         <div>
+            <Link to="/movies/add">Nouveau</Link>
             <button onClick={ loadMovies }>Reload</button>
             {spinner} {errorInfo}
             
