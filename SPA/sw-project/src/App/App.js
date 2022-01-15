@@ -13,8 +13,6 @@ function App() {
     localStorage.setItem('isLogged', true);
     setIsLogged(true);
 
-    console.log('login');
-
     navigate('/movies');
   };
 
