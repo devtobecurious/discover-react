@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 const Header = props => {
     return (
         <header>
             <div>
-                <a href="#">Movies</a>
+            <Link to="/movies">Films</Link>
             </div>
         </header>
     );
