@@ -2,29 +2,34 @@ import './App.css';
 import MoviesList from '../features/Movies/MoviesList/MoviesList';
 import Header from '../shared/Header/Header';
 import Login from '../features/User/Login/Login';
+import MovieNew from '../features/Movies/MovieNew/MovieNew';
 import { useState, useEffect } from 'react';
+import { Route, Routes, useNavigate } from 'react-router';
 
 function App() {
-  
   const [isLogged, setIsLogged] = useState(false);
+  let navigate = useNavigate();
 
   const login = (email, password) => {
     localStorage.setItem('isLogged', true);
     setIsLogged(true);
+
+    navigate('/movies');
   };
 
   useEffect(() => {
-    const userIsLogged = localStorage.getItem('isLogged');  
+    const userIsLogged = localStorage.getItem('isLogged');
     setIsLogged(userIsLogged);
-  }, [
-
-  ]);
+  }, []);
 
   return (
-    <div>
-      <Header></Header>
-      { !isLogged ? <Login onLogin={ login }></Login> : null }
-      <MoviesList></MoviesList>
+    <div>    
+      <Header></Header>  
+      <Routes>
+        <Route path="/login" element={<Login onLogin={login}></Login>}></Route>
+        <Route path="/movies/add" element={<MovieNew></MovieNew>}></Route>
+        <Route path="/movies" element={<MoviesList></MoviesList>}></Route>
+      </Routes>
     </div>
   );
 }

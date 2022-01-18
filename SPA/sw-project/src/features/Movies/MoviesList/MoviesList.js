@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Apis } from "../../../config/Apis";
 import MoviesTable from "../MoviesTable/MoviesTable";
 import MoviesService from "../Services/MoviesService";
@@ -8,14 +9,17 @@ const MoviesList = props => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    useEffect(() => {
+        loadMovies();
+    }, []);
+
     const loadMovies = async (event) => {
         setIsLoading(true);
         setError(null);
 
         try {
             const movies = await (new MoviesService()).getAll()
-            setMovies(previousList => movies);
-            
+            setMovies(previousList => movies);            
         }
         catch(ex) {
             setError(ex);
@@ -28,7 +32,8 @@ const MoviesList = props => {
 
     return (
         <div>
-            <button onClick={ loadMovies }>Load</button>
+            <Link to="/movies/add">Nouveau</Link>
+            <button onClick={ loadMovies }>Reload</button>
             {spinner} {errorInfo}
             
             <MoviesTable movies={movies}></MoviesTable>
