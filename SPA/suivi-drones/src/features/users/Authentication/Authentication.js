@@ -11,6 +11,10 @@ const Authentication = props => {
     const logUser = async () => {
         console.info('log', null);
         const user = await AuthenticationService.login(userInput.login, userInput.password);
+
+        if (user != null) {
+            props.history.push("/droides");
+        }
     }
 
     const loginChangedHandler = (event) => {

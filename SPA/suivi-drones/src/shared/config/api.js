@@ -10,6 +10,9 @@ const prod = {
     apis: {
         authentication: {
             url: ''
+        },
+        drones: {
+            url: ''
         }
     }
 }
