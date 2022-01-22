@@ -11,6 +11,10 @@ function App() {
   let navigate = useNavigate();
 
   const login = (email, password) => {
+    setLoginAndRedirectToHome();
+  };
+
+  const setLoginAndRedirectToHome = () => {
     localStorage.setItem('isLogged', true);
     setIsLogged(true);
 
@@ -20,6 +24,12 @@ function App() {
   useEffect(() => {
     const userIsLogged = localStorage.getItem('isLogged');
     setIsLogged(userIsLogged);
+
+    if (! userIsLogged) {
+      navigate('/login');
+    } else {
+      setLoginAndRedirectToHome();
+    }
   }, []);
 
   return (
