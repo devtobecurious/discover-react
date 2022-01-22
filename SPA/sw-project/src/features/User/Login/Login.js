@@ -1,4 +1,4 @@
-import { useState, useReducer } from 'react';
+import { useState, useReducer, useEffect } from 'react';
 import './Login.css';
 
 const emailReducer = (state, action) => {
@@ -23,12 +23,12 @@ const passwordReducer = (state, action) => {
 
 const Login = props => {
     const [formIsValid, setFormIsValid] = useState(false);
-    
+
     // plus besoin car on utilise useReducer => const [password, setPassword] = useState('');
-    const [passwordState, dispatchPassword] = useReducer(passwordReducer, {value: '', isValid: false});
+    const [passwordState, dispatchPassword] = useReducer(passwordReducer, { value: '', isValid: false });
 
     // plus besoin car on utilise useReducer => const [email, setEmail] = useState('');
-    const [emailState, dispatchEmail] = useReducer(emailReducer, {value: '', isValid: false});
+    const [emailState, dispatchEmail] = useReducer(emailReducer, { value: '', isValid: false });
 
     const changeEmail = (event) => {
         // plus besoin car useReducer maintenant => setEmail(event.target.value);
@@ -37,6 +37,17 @@ const Login = props => {
 
         setFormIsValid(event.target.value !== '' && passwordState.value);
     };
+
+    useEffect(() => {
+        const identifier = setTimeout(() => {
+            setFormIsValid(emailState.isValid && passwordState.isValid);
+        }, 500);
+
+        return () => {
+            // cleaner
+            clearTimeout(identifier);
+        };
+    }, [emailState, passwordState]);
 
     const changePassword = (event) => {
         // plus besoin car useReducer maintenant => setPassword(event.target.value);
