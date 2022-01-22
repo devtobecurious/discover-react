@@ -1,25 +1,55 @@
-import { useState } from 'react';
+import { useState, useReducer } from 'react';
 import './Login.css';
 
+const emailReducer = (state, action) => {
+    let returnState = { value: '', isValid: false }; // état par défaut
+
+    if (action.type === 'USER_INPUT') {
+        returnState = { value: action.value, isValid: action.value.includes('@') }
+    }
+
+    return returnState;
+};
+
+const passwordReducer = (state, action) => {
+    let returnState = { value: '', isValid: false }; // état par défaut
+
+    if (action.type === 'USER_INPUT') {
+        returnState = { value: action.value, isValid: action.value !== '' }
+    }
+
+    return returnState;
+};
+
 const Login = props => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [formIsValid, setFormIsValid] = useState(false);
+    
+    // plus besoin car on utilise useReducer => const [password, setPassword] = useState('');
+    const [passwordState, dispatchPassword] = useReducer(passwordReducer, {value: '', isValid: false});
+
+    // plus besoin car on utilise useReducer => const [email, setEmail] = useState('');
+    const [emailState, dispatchEmail] = useReducer(emailReducer, {value: '', isValid: false});
 
     const changeEmail = (event) => {
-        setEmail(event.target.value);
-        setFormIsValid(event.target.value !== '' && password);
+        // plus besoin car useReducer maintenant => setEmail(event.target.value);
+        const action = { type: 'USER_INPUT', value: event.target.value };
+        dispatchEmail(action);
+
+        setFormIsValid(event.target.value !== '' && passwordState.value);
     };
 
     const changePassword = (event) => {
-        setPassword(event.target.value);
-        setFormIsValid(event.target.value !== '' && email);
+        // plus besoin car useReducer maintenant => setPassword(event.target.value);
+
+        const action = { type: 'USER_INPUT', value: event.target.value };
+        dispatchPassword(action);
+
+        setFormIsValid(event.target.value !== '' && emailState.value);
     };
 
     const validLogin = (event) => {
         event.preventDefault();
-
-        props.onLogin(email, password);
+        props.onLogin(emailState.value, passwordState.value);
     };
 
     return (
@@ -29,11 +59,11 @@ const Login = props => {
                 <div>
                     <div>
                         <label>Email</label>
-                        <input type="email" value={email} onChange={changeEmail}></input>
+                        <input type="email" value={emailState.value} onChange={changeEmail}></input>
                     </div>
                     <div>
                         <label>Password</label>
-                        <input type="password" value={password} onChange={changePassword}></input>
+                        <input type="password" value={passwordState.value} onChange={changePassword}></input>
                     </div>
                     <div>
                         <button type="submit" disabled={!formIsValid}>Login</button>
