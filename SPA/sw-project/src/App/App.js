@@ -6,6 +6,7 @@ import MovieNew from '../features/Movies/MovieNew/MovieNew';
 import { useState, useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router';
 import Home from '../features/Home/Home';
+import AuthenticationContext from '../store/authentication-context';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -26,7 +27,7 @@ function App() {
     const userIsLogged = localStorage.getItem('isLogged');
     setIsLogged(userIsLogged);
 
-    if (! userIsLogged) {
+    if (!userIsLogged) {
       navigate('/login');
     } else {
       setLoginAndRedirectToHome();
@@ -34,14 +35,16 @@ function App() {
   }, []);
 
   return (
-    <div>    
-      <Header isAuthenticated={isLogged}></Header>  
-      <Routes>
-        <Route path="/login" element={<Login onLogin={login}></Login>}></Route>
-        <Route path="/home" element={<Home></Home>}></Route>
-        <Route path="/movies/add" element={<MovieNew></MovieNew>}></Route>
-        <Route path="/movies" element={<MoviesList></MoviesList>}></Route>
-      </Routes>
+    <div>
+      <AuthenticationContext.Provider value={ { isLoggedIn: isLogged }}>
+        <Header isAuthenticated={isLogged}></Header>
+        <Routes>
+          <Route path="/login" element={<Login onLogin={login}></Login>}></Route>
+          <Route path="/home" element={<Home></Home>}></Route>
+          <Route path="/movies/add" element={<MovieNew></MovieNew>}></Route>
+          <Route path="/movies" element={<MoviesList></MoviesList>}></Route>
+        </Routes>
+      </AuthenticationContext.Provider>
     </div>
   );
 }
