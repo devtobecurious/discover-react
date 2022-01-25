@@ -4,7 +4,9 @@ const Header = props => {
     return (
         <header>
             <div>
-            <Link to="/movies">Films</Link>
+            {!props.isAuthenticated && <Link to="/login">Se connecter</Link>}
+            {props.isAuthenticated && <Link to="/home">Accueil</Link>}
+            {props.isAuthenticated && <Link to="/movies">Films</Link>}
             </div>
         </header>
     );

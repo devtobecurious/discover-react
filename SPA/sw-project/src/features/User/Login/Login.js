@@ -38,16 +38,19 @@ const Login = props => {
         setFormIsValid(event.target.value !== '' && passwordState.value);
     };
 
+    const {isValid: emailStateValid} = emailState.isValid;
+    const {isValid: passwordStateValid} = passwordState.isValid;
+
     useEffect(() => {
         const identifier = setTimeout(() => {
-            setFormIsValid(emailState.isValid && passwordState.isValid);
+            setFormIsValid(emailStateValid && passwordStateValid);
         }, 500);
 
         return () => {
             // cleaner
             clearTimeout(identifier);
         };
-    }, [emailState, passwordState]);
+    }, [emailStateValid, passwordStateValid]);
 
     const changePassword = (event) => {
         // plus besoin car useReducer maintenant => setPassword(event.target.value);
