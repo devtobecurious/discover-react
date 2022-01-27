@@ -1,4 +1,5 @@
 import { useState, useReducer, useEffect, useContext } from 'react';
+import Input from '../../../shared/UI/Input/Input';
 import AuthenticationContext from '../../../store/authentication-context';
 import './Login.css';
 
@@ -73,10 +74,8 @@ const Login = props => {
             <h2>Login</h2>
             <form onSubmit={validLogin}>
                 <div>
-                    <div>
-                        <label>Email</label>
-                        <input type="email" value={emailState.value} onChange={changeEmail}></input>
-                    </div>
+                    <Input type="email" label="Email" value={emailState.value} onChange={changeEmail} id="email"></Input>
+                
                     <div>
                         <label>Password</label>
                         <input type="password" value={passwordState.value} onChange={changePassword}></input>
