@@ -16,6 +16,12 @@ function App() {
     setLoginAndRedirectToHome();
   };
 
+  const logout = () => {
+    localStorage.removeItem('isLogged');
+    setIsLogged(false);
+    navigate('/login');
+  }
+
   const setLoginAndRedirectToHome = () => {
     localStorage.setItem('isLogged', true);
     setIsLogged(true);
@@ -36,8 +42,8 @@ function App() {
 
   return (
     <div>
-      <AuthenticationContext.Provider value={ { isLoggedIn: isLogged }}>
-        <Header isAuthenticated={isLogged}></Header>
+      <AuthenticationContext.Provider value={ { isAuthenticated: isLogged, logout: logout }}>
+        <Header></Header>
         <Routes>
           <Route path="/login" element={<Login onLogin={login}></Login>}></Route>
           <Route path="/home" element={<Home></Home>}></Route>
