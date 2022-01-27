@@ -75,11 +75,8 @@ const Login = props => {
             <form onSubmit={validLogin}>
                 <div>
                     <Input type="email" label="Email" value={emailState.value} onChange={changeEmail} id="email"></Input>
-                
-                    <div>
-                        <label>Password</label>
-                        <input type="password" value={passwordState.value} onChange={changePassword}></input>
-                    </div>
+                    <Input type="password" label="Mot de passe" value={passwordState.value} onChange={changePassword} id="password"></Input>
+                    
                     <div>
                         <button type="submit" disabled={!formIsValid}>Login</button>
                     </div>
