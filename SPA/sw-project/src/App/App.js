@@ -9,48 +9,15 @@ import Home from '../features/Home/Home';
 import AuthenticationContext from '../store/authentication-context';
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
-  let navigate = useNavigate();
-
-  const login = (email, password) => {
-    setLoginAndRedirectToHome();
-  };
-
-  const logout = () => {
-    localStorage.removeItem('isLogged');
-    setIsLogged(false);
-    navigate('/login');
-  }
-
-  const setLoginAndRedirectToHome = () => {
-    localStorage.setItem('isLogged', true);
-    setIsLogged(true);
-
-    navigate('/home');
-  };
-
-  useEffect(() => {
-    const userIsLogged = localStorage.getItem('isLogged');
-    setIsLogged(userIsLogged);
-
-    if (!userIsLogged) {
-      navigate('/login');
-    } else {
-      setLoginAndRedirectToHome();
-    }
-  }, []);
-
   return (
     <div>
-      <AuthenticationContext.Provider value={ { isAuthenticated: isLogged, logout: logout }}>
         <Header></Header>
         <Routes>
-          <Route path="/login" element={<Login onLogin={login}></Login>}></Route>
+          <Route path="/login" element={<Login></Login>}></Route>
           <Route path="/home" element={<Home></Home>}></Route>
           <Route path="/movies/add" element={<MovieNew></MovieNew>}></Route>
           <Route path="/movies" element={<MoviesList></MoviesList>}></Route>
         </Routes>
-      </AuthenticationContext.Provider>
     </div>
   );
 }

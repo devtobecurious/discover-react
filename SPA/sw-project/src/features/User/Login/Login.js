@@ -1,4 +1,5 @@
-import { useState, useReducer, useEffect } from 'react';
+import { useState, useReducer, useEffect, useContext } from 'react';
+import AuthenticationContext from '../../../store/authentication-context';
 import './Login.css';
 
 const emailReducer = (state, action) => {
@@ -22,6 +23,7 @@ const passwordReducer = (state, action) => {
 };
 
 const Login = props => {
+    const context = useContext(AuthenticationContext);
     const [formIsValid, setFormIsValid] = useState(false);
 
     // plus besoin car on utilise useReducer => const [password, setPassword] = useState('');
@@ -63,7 +65,7 @@ const Login = props => {
 
     const validLogin = (event) => {
         event.preventDefault();
-        props.onLogin(emailState.value, passwordState.value);
+        context.login(emailState.value, passwordState.value);
     };
 
     return (
