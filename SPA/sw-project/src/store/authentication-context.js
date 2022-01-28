@@ -13,11 +13,16 @@ export const AuthenticationProviderContext = props => {
 
     useEffect(() => {
         const userIsLogged = localStorage.getItem('isLogged');
+        let defaultRoute = 'home';
     
-        if (userIsLogged && userIsLogged === 'false') {
-            setIsLoggedIn(true);
-            navigate('/login');
+        const isLogged = (userIsLogged && userIsLogged === 'true');
+        setIsLoggedIn(isLogged);
+
+        if (! isLogged) {
+           defaultRoute = 'login';
         }
+
+        navigate(`${defaultRoute}`);
       }, []);
 
     const login = (email, password) => {

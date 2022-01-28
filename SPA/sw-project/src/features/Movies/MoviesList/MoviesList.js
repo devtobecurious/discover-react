@@ -18,7 +18,7 @@ const MoviesList = props => {
         setError(null);
 
         try {
-            const movies = await (new MoviesService()).getAll()
+            const movies = await (new MoviesService()).getAll();
             setMovies(previousList => movies);            
         }
         catch(ex) {
