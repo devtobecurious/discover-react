@@ -1,4 +1,10 @@
 const counterReducer = (state = {counter: 0}, action) => {
+    if (action.type === 'increase') {
+        state = {
+            counter: state.counter + action.value
+        }
+    }
+    
     if (action.type === 'increment') {
         state = {
             counter: state.counter + 1
