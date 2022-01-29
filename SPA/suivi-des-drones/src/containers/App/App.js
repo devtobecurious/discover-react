@@ -1,10 +1,15 @@
+import MainRouting from '../../shared/routing/MainRouting';
+import Header from '../Header/Header';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <>
+      <Header></Header>
+      <div className="container">
+        <MainRouting></MainRouting>
+      </div>
+    </>
   );
 }
 
