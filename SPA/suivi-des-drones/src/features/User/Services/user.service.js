@@ -6,6 +6,10 @@ class UserService {
         this.storageService = localStorageService;
     }
 
+    logOut() {
+        this.storageService.remove('user');
+    }
+
     async log(email, password) {
         const header = {
             method: 'POST',

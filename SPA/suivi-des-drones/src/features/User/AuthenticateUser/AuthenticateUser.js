@@ -15,11 +15,9 @@ const AuthenticateUser = props => {
             localUser = userService.get();
         }
 
-        if (localUser) {
-            url = '/';
+        if (! localUser) {
+            navigate(url);
         }
-
-        navigate(url);
     }, [user, navigate]);
 
     return (
