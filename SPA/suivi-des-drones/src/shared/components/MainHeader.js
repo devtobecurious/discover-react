@@ -18,11 +18,11 @@ const MainHeader = props => {
             preventScrolling: true
         }}
     >
-        <NavItem href="">
-            Getting started
+        <NavItem href="/">
+            Accueil
         </NavItem>
-        <NavItem href="components.html">
-            Components
+        <NavItem href="/drones">
+            Drones
         </NavItem>
     </Navbar>)
 };

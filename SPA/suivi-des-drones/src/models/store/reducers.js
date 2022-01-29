@@ -11,7 +11,7 @@ const applicationState = {
 
 const mainReducer = (state = applicationState, action) => {
     if (action.type === 'login') {
-        state = { ...state, user : { isLogged: true, data: action.user }};
+        state = { ...state, user : { isLogged: true, data: action.data }};
     }
 
     if (action.type === 'logout') {
@@ -19,7 +19,7 @@ const mainReducer = (state = applicationState, action) => {
     }
 
     if (action.type === 'getDrones') {
-        state = { ...state, drones: { isLoaded: true, data: action.drones }};
+        state = { ...state, drones: { isLoaded: true, data: action.data }};
     }
 
     return state;

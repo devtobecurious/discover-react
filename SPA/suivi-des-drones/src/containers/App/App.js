@@ -1,3 +1,4 @@
+import AuthenticateUser from '../../features/User/AuthenticateUser/AuthenticateUser';
 import MainRouting from '../../shared/routing/MainRouting';
 import Header from '../Header/Header';
 import './App.css';
@@ -7,7 +8,9 @@ function App() {
     <>
       <Header></Header>
       <div className="container">
-        <MainRouting></MainRouting>
+        <AuthenticateUser>
+          <MainRouting></MainRouting>
+        </AuthenticateUser>
       </div>
     </>
   );

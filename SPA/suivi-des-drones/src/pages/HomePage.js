@@ -1,6 +1,7 @@
 const HomePage = props => {
     return (
         <>
+            <h1>Bienvenue !</h1>
         </>
     )
 };
