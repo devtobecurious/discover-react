@@ -1,11 +1,9 @@
-import { Task } from "../models"
+import { useTasks } from "./TaskContextProvider"
 
-export type TaskListProps = {
-    items: Task[]
-}
 
-export const TaskList = ({items}: TaskListProps) => {
-    const divs = items.map(item => <div key={item.id}>{item.text}</div> )
+export const TaskList = () => {
+    const state = useTasks()
+    const divs = state.items.map(item => <div key={item.id}>{item.text}</div> )
 
     return (
         <>

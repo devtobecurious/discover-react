@@ -1,19 +1,24 @@
 import { useState } from "react"
-import { Task } from "../models"
+import { useTasksDispatch } from "./TaskContextProvider"
 
-export type AddTaskProps = {
-    addOne: (task: Task) => void
-}
-
-export const AddTask = ({addOne}: AddTaskProps) => {
+export const AddTask = () => {
     const [text, setText] = useState('')
+    const dispatch = useTasksDispatch()
 
     const onClickToAdd = () => {
-        addOne({
-            id: 0,
-            state: 'draft',
-            text
-        })
+        if(! dispatch) {
+            return;
+        }
+        dispatch(
+            { 
+                item: {
+                    id: 0,
+                    state: 'draft',
+                    text
+                },
+                type: 'add'
+            }
+        )
         setText('')
     }
 
