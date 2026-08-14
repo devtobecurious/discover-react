@@ -12,74 +12,88 @@ import { addOne } from "../store";
 const trainingCoursesPromise = getListTrainingCourses();
 
 export const AddNewSession = () => {
-    "use no memo";
+  "use no memo";
 
-  const dispatch = useAppDispatch()
-  const nbItems = useAppSelector(selectCount)
+  const dispatch = useAppDispatch();
+  const nbItems = useAppSelector(selectCount);
 
   const {
     register,
     handleSubmit,
     formState: { isValid, errors, isSubmitSuccessful },
     reset,
-  } = useForm<CreateTrainingSession>({ mode: "onChange",
+  } = useForm<CreateTrainingSession>({
+    mode: "onChange",
     defaultValues: {
-    trainingCourseId: 0,
-    type: "presta",
-  }
-   });
+      trainingCourseId: 0,
+      type: "presta",
+    },
+  });
+
   const onSubmit: SubmitHandler<CreateTrainingSession> = async (data) => {
     await addOneTrainingCourse(data);
     dispatch(addOne(data));
   };
 
   useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset();
-    }
+    if (isSubmitSuccessful) reset();
   }, [isSubmitSuccessful, reset]);
 
   const trainingCourses = use(trainingCoursesPromise);
 
   return (
-    <>
-      <AddLayout>
-        <h1>Nouvelle session (sessions existantes : {nbItems})</h1>
+    <AddLayout>
+      <h1>Nouvelle session <span style={{ color: "var(--text-secondary)", fontWeight: 400, fontSize: "1rem" }}>({nbItems} existante{nbItems !== 1 ? "s" : ""})</span></h1>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <label>Training course</label>
-          <select
-            {...register("trainingCourseId", { required: "Id requis", min: 1 })}
-          >
-            <option value="0">[Selectionner]</option>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="form-group">
+          <label>Formation</label>
+          <select {...register("trainingCourseId", { required: "Requis", min: 1 })}>
+            <option value="0">[Sélectionner une formation]</option>
             {trainingCourses.map((item) => (
               <option key={item.id} value={item.id}>
                 {item.title}
               </option>
             ))}
           </select>
-          <ErrorMessage errors={errors} name="trainingCourseId" />
+          <span className="field-error">
+            <ErrorMessage errors={errors} name="trainingCourseId" />
+          </span>
+        </div>
 
-          <label>Type</label>
+        <div className="form-group">
+          <label>Type de session</label>
           <select {...register("type", { required: true })}>
             <option value="presta">Prestation</option>
             <option value="final">Client final</option>
           </select>
-          <ErrorMessage errors={errors} name="type" />
+          <span className="field-error">
+            <ErrorMessage errors={errors} name="type" />
+          </span>
+        </div>
 
-          <label>Date début</label>
-          <input {...register("beginDate")} type="datetime-local"></input>
-          <ErrorMessage errors={errors} name="beginDate" />
+        <div className="form-group">
+          <label>Date de début</label>
+          <input {...register("beginDate")} type="datetime-local" />
+          <span className="field-error">
+            <ErrorMessage errors={errors} name="beginDate" />
+          </span>
+        </div>
 
-          <label>Date fin</label>
-          <input {...register("endDate")} type="datetime-local"></input>
-          <ErrorMessage errors={errors} name="endDate" />
+        <div className="form-group">
+          <label>Date de fin</label>
+          <input {...register("endDate")} type="datetime-local" />
+          <span className="field-error">
+            <ErrorMessage errors={errors} name="endDate" />
+          </span>
+        </div>
 
+        <div className="form-actions">
           <button disabled={!isValid} type="submit">
-            Ajouter
+            Ajouter la session
           </button>
-        </form>
-      </AddLayout>
-    </>
+        </div>
+      </form>
+    </AddLayout>
   );
 };

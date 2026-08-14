@@ -8,14 +8,22 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
   const { bgColor } = useContext(ThemeContext);
 
   return (
-    <>
-      <div className={bgColor}>
-        <div id="header">
+    <div className={`app-shell ${bgColor}`}>
+      <header className="navbar">
+        <div className="navbar-inner container">
           <MainMenu />
         </div>
-        <div>{children}</div>
-        <div id="footer"></div>
-      </div>
-    </>
+      </header>
+      <main className="main-content">
+        <div className="container">
+          {children}
+        </div>
+      </main>
+      <footer className="footer">
+        <div className="container">
+          © {new Date().getFullYear()} TrainManager — Gestion des sessions de formation
+        </div>
+      </footer>
+    </div>
   );
 };
