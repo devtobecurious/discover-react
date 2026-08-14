@@ -1,0 +1,16 @@
+[
+    {
+        "id": 2,
+        "trainingCourseId": 14,
+        "beginDate": "2026-14-08",
+        "endDate": "2026-14-08",
+        "type": "presta"
+    },
+     {
+        "id": 1,
+        "trainingCourseId": 14,
+        "beginDate": "2026-15-08",
+        "endDate": "2026-16-08",
+        "type": "presta"
+    }
+]
